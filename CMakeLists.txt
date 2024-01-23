@@ -1,15 +1,7 @@
-﻿# CMakeList.txt : CMake project for Window, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.8)
 
 project ("Window")
+set(CMAKE_CXX_STANDARD 17) #Use C++17
+add_executable (Window WIN32 "Window.cpp") #Make a Windows GUI application
 
-# Add source to this project's executable.
-add_executable (Window "Window.cpp" "Window.h")
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Window PROPERTY CXX_STANDARD 20)
-endif()
-
-# TODO: Add tests and install targets if needed.
