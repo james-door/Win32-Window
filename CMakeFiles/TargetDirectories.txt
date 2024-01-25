@@ -1,3 +1,0 @@
-C:/Users/James/Desktop/window/Win32-Window/CMakeFiles/Window.dir
-C:/Users/James/Desktop/window/Win32-Window/CMakeFiles/ALL_BUILD.dir
-C:/Users/James/Desktop/window/Win32-Window/CMakeFiles/ZERO_CHECK.dir
