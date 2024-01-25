@@ -25,9 +25,11 @@
                 "value": "x64",
                 "strategy": "external"
             },
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
+          "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Debug",
+            "USE_UNICODE" :false
+
+          }
         },
         {
             "name": "x64-release",
