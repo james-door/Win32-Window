@@ -1,14 +1,11 @@
-﻿#include <iostream>
-#include <sstream>
-#define WIN32_LEAN_AND_MEAN
-
+﻿#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
+#include <sstream>
+
+
 
 #define HANDLE_RETURN(err) LogIfFailed(err, __FILE__, __LINE__)
 
-
-constexpr LONG defaultWindowWidth = 990;
-constexpr LONG defaultWindowHeight = 540;
 std::stringstream Win32ErrorLog;
 
 inline void LogIfFailed(bool err, const char* file, int line)
@@ -42,7 +39,6 @@ void displayErrorMessage(std::string error) {
 
 //Message Procedure
 LRESULT WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-
     switch (uMsg) {
     case WM_DESTROY:
         PostQuitMessage(0);
@@ -51,13 +47,15 @@ LRESULT WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
         return DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
     return 0;
-
 }
 
 
+constexpr LONG defaultWindowWidth = 990;
+constexpr LONG defaultWindowHeight = 540;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, int nCmdShow)
 {
-    //Register the Window
+    //Register a window class
     WNDCLASSEX winClass = {};
     winClass.cbSize = sizeof(WNDCLASSEX);
     winClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -68,7 +66,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
     winClass.hIcon = NULL;
     winClass.hCursor = LoadCursor(hInstance, NULL);
     winClass.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
-    winClass.lpszMenuName = "window menu";
+    winClass.lpszMenuName = NULL;
     winClass.lpszClassName = "window";
     winClass.hIconSm = LoadIcon(hInstance, NULL);
 

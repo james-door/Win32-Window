@@ -6,7 +6,8 @@ add_executable (Window WIN32 "Window.cpp") #Make a Windows GUI application
 
 option(USE_UNICODE "Support Unicode." ON)
 if(USE_UNICODE)
-	target_compile_definitions(Window PUBLIC UNICODE) #When Windows.h is linked it will get the compile defintion
+	target_compile_definitions(Window PUBLIC UNICODE) 
+	target_compile_definitions(Window PUBLIC _UNICODE) 
 endif()
 
 
