@@ -44,14 +44,13 @@ LRESULT WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
         PostQuitMessage(0);
         break;
     default:
-        return DefWindowProc(hWnd, uMsg, wParam, lParam);
+        return 0;
     }
     return 0;
 }
 
 
-constexpr LONG defaultWindowWidth = 990;
-constexpr LONG defaultWindowHeight = 540;
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, int nCmdShow)
 {
@@ -74,6 +73,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
 
 
     //Fill windowArea RECT with Client area
+    constexpr LONG defaultWindowWidth = 990;
+    constexpr LONG defaultWindowHeight = 540;
     RECT windowArea = {};
     windowArea.left = 0;
     windowArea.top = 0;
@@ -95,7 +96,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
         windowAreaWidth, windowAreaHeight, NULL, NULL, hInstance, nullptr);
     HANDLE_RETURN(windowHandle == NULL);
 
+    
 
+    if (!Win32ErrorLog.str().empty()) {
+        displayErrorMessage("Win32 Errors:\n\n" + Win32ErrorLog.str());
+    }
     ShowWindow(windowHandle, SW_SHOW);
     //Message Loop
     MSG windowMsg= {};
