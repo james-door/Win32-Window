@@ -1,7 +1,7 @@
 ﻿#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <sstream>
-
+#include <tchar.h>
 
 
 #define HANDLE_RETURN(err) LogIfFailed(err, __FILE__, __LINE__)
@@ -44,7 +44,7 @@ LRESULT WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
         PostQuitMessage(0);
         break;
     default:
-        return 0;
+        return DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
     return 0;
 }
@@ -66,7 +66,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
     winClass.hCursor = LoadCursor(hInstance, NULL);
     winClass.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
     winClass.lpszMenuName = NULL;
-    winClass.lpszClassName = "window";
+    winClass.lpszClassName = _T("window");
     winClass.hIconSm = LoadIcon(hInstance, NULL);
 
     HANDLE_RETURN(RegisterClassEx(&winClass) == 0);
@@ -92,15 +92,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
     int centreY = (displayHeight - windowAreaHeight) / 2;
 
     //Create the window
-    HWND windowHandle = CreateWindowEx(NULL, "window", "My Window", WS_OVERLAPPEDWINDOW, centreX, centreY,
+    HWND windowHandle = CreateWindowEx(NULL, _T("window"), _T("My Window"), WS_OVERLAPPEDWINDOW, centreX, centreY,
         windowAreaWidth, windowAreaHeight, NULL, NULL, hInstance, nullptr);
     HANDLE_RETURN(windowHandle == NULL);
 
     
-
-    if (!Win32ErrorLog.str().empty()) {
-        displayErrorMessage("Win32 Errors:\n\n" + Win32ErrorLog.str());
-    }
     ShowWindow(windowHandle, SW_SHOW);
     //Message Loop
     MSG windowMsg= {};
