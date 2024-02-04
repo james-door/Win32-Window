@@ -96,21 +96,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
         windowAreaWidth, windowAreaHeight, NULL, NULL, hInstance, nullptr);
     HANDLE_RETURN(windowHandle == NULL);
 
-    
     ShowWindow(windowHandle, SW_SHOW);
+
     //Message Loop
     MSG windowMsg= {};
     while (windowMsg.message != WM_QUIT) {
         GetMessage(&windowMsg, NULL, 0, 0);
         DispatchMessage(&windowMsg);
     }
-
-
-
-
-
-
-
 
     if (!Win32ErrorLog.str().empty()) {
         displayErrorMessage("Win32 Errors:\n\n" + Win32ErrorLog.str());
